@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>轻言轻语</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../res/layui/css/layui.css">
+    <link rel="stylesheet" href="../res/static/css/mian.css">
+    <style>
+        .layui-form-item-item {
+            margin: 15px 0;
+            
+        }
+        .layui-form {
+            font-size: 16px;  
+        }
+    </style>
+</head>
+
+<body class="lay-blog">
+    <div class="header">
+        <div class="header-wrap">
+            <h1 class="logo pull-left">
+                <a href="index.html">
+                    <img src="../res/static/images/logo.png" alt="" class="logo-img">
+                    <img src="../res/static/images/logo-text.png" alt="" class="logo-text">
+                </a>
+            </h1>
+            <form class="layui-form blog-seach pull-left" action="">
+                <div class="layui-form-item-item blog-sewrap">
+                    <div class="layui-input-block blog-sebox">
+                        <i class="layui-icon layui-icon-search"></i>
+                        <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </form>
+            <div class="blog-nav pull-right">
+                <ul class="layui-nav pull-left ">
+                    <li class="layui-nav-item layui-this"><a href="activity.html">动态</a></li>
+                    <li class="layui-nav-item"><a href="friend.html">好友</a></li>
+                    <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
+                    <li class="layui-nav-item">
+                        <a href=""><img src="../res/static/images/info-img.png" class="layui-nav-img">我</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">修改信息</a></dd>
+                            <dd><a href="javascript:;">添加好友</a></dd>
+                            <dd><a href="javascript:;">管理动态</a></dd>
+                            <dd><a href="javascript:;">退出登陆</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="mobile-nav pull-right" id="mobile-nav">
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more"></i>
+                </a>
+            </div>
+        </div>
+        <ul class="pop-nav" id="pop-nav">
+            <li><a href="index.html">动态</a></li>
+            <li><a href="message.html">留言</a></li>
+            <li><a href="about.html">关于</a></li>
+        </ul>
+    </div>
+
+    <div class="container-wrap">
+        <div style="float:left; margin-left: 130px;">
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+                <li class="layui-nav-item"><a href="">修改信息</a></li>
+                <li class="layui-nav-item"><a href="manage_add_friend.html">添加好友</a></li>
+                <li class="layui-nav-item"><a href="manage_activity.html">动态管理</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="contar-wrap">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item-item">
+                            <label class="layui-form-label">姓名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" required lay-verify="required" placeholder="孙超爸爸"
+                                    autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="sex" value="男" title="男">
+                                <input type="radio" name="sex" value="女" title="女" checked>
+                            </div>
+                        </div>
+                        <div class="layui-form-item-item layui-form-text">
+                            <label class="layui-form-label">个性签名</label>
+                            <div class="layui-input-block">
+                                <textarea name="desc" placeholder="请输入内容" class="layui-textarea">我超哥就是天下无敌</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="demo1">修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            <span>&copy; 2018</span>
+            <span><a href="http://www.layui.com" target="_blank">layui.com</a></span>
+            <span>MIT license</span>
+        </p>
+        <p><span>人生就是一场修行</span></p>
+    </div>
+    <script src="../res/layui/layui.js">
+
+    </script>
+    <script>
+        layui.config({
+            base: '../res/static/js/'
+        }).use('blog');
+    </script>
+    <script id="LAY-msg-tpl" type="text/html">
+		<div class="info-box">
+			<div class="info-item">
+				<img class="info-img" src="{{ d.avatar }}" alt="">
+			  <div class="info-text">
+					<p class="title">
+					  <span class="name">{{ d.username }}</span>
+					  <span class="info-img">
+					  	<i class="layui-icon layui-icon-praise"></i>
+					  	{{ d.praise }}
+					 	</span>
+					</p>
+					<p class="info-intr">
+						{{ d.content }}
+					</p>
+			  </div>
+			</div>
+		</div>
+	</script>
+</body>
+
+</html>

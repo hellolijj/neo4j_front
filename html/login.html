@@ -7,19 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../res/layui/css/layui.css">
     <link rel="stylesheet" href="../res/static/css/mian.css">
+    <style>
+        .layui-form-item-item {
+            margin: 15px 0;
+            
+        }
+        .layui-form {
+            font-size: 16px;  
+        }
+    </style>
 </head>
 
 <body class="lay-blog">
     <div class="header">
         <div class="header-wrap">
             <h1 class="logo pull-left">
-                <a href="activity.html" style="color:rgba(255,255,255,.8);">
+                <a href="index.html">
                     <img src="../res/static/images/logo.png" alt="" class="logo-img">
-                    轻言轻语
+                    <img src="../res/static/images/logo-text.png" alt="" class="logo-text">
                 </a>
             </h1>
             <form class="layui-form blog-seach pull-left" action="">
-                <div class="layui-form-item blog-sewrap">
+                <div class="layui-form-item-item blog-sewrap">
                     <div class="layui-input-block blog-sebox">
                         <i class="layui-icon layui-icon-search"></i>
                         <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
@@ -28,9 +37,8 @@
             </form>
             <div class="blog-nav pull-right">
                 <ul class="layui-nav pull-left ">
-                    <li class="layui-nav-item layui-this"><a href="activity.html">动态</a></li>
+                    <li class="layui-nav-item"><a href="activity.html">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
-                    <li class="layui-nav-item"><a href="manage.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
                 </ul>
                 <a href="#" class="personal pull-left">
@@ -49,47 +57,41 @@
             <li><a href="about.html">关于</a></li>
         </ul>
     </div>
+
     <div class="container-wrap">
-        <div class="container container-message container-details container-comment">
+        <div style="float:left; margin-left: 130px;">
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+                <li class="layui-nav-item"><a href="#">登陆</a></li>
+                <li class="layui-nav-item"><a href="register.html">注册</a></li>
+            </ul>
+        </div>
+        <div class="container">
             <div class="contar-wrap">
-                <div class="item">
-                    <div class="logo" style="float:left; margin-left: 22px;">
-                        <img src="../res/static/images/info-img.png" alt="">
-                    </div>
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-
-                        <h3>我们的故事才刚刚开始</h3>
-                        <h5>发布于：<span>刚刚</span></h5>
-
-                        <p>我想谁也不会留意，那是一个阳光明媚的中午</p>
-                        <img src="../res/static/images/item.png" alt="帅哥">
-                        <div class="count layui-clear">
-                            <span class="pull-left">点赞 <em>100000+</em></span>
-                            <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item-item">
+                            <label class="layui-form-label">登陆账号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" required lay-verify="required" placeholder="请输入邮箱/手机号"
+                                    autocomplete="off" class="layui-input">
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="logo" style="float:left; margin-left: 22px;">
-                        <img src="../res/static/images/info-img.png" alt="">
-                    </div>
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-
-                        <h3>拥有诗意的心态,才能拥有诗意的生活</h3>
-                        <h5>发布于：<span>刚刚</span></h5>
-
-                        <p>父爱如山，不善表达。回想十多年前，总记得父亲有个宽厚的肩膀，小小的自己跨坐在上面，越过人山人海去看更广阔的天空，那个时候期望自己有一双翅膀，能够像鸟儿一样飞得高，看得远。虽然父亲有时会和自己开玩笑，但在做错事的时候会受到严厉的训斥。</p>
-                        <img src="../res/static/images/item.png" alt="帅哥">
-                        <div class="count layui-clear">
-                            <span class="pull-left">点赞 <em>100000+</em></span>
-                            <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
+                        <div class="layui-form-item-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="title" required lay-verify="required" placeholder="请输入密码"
+                                 autocomplete="off" class="layui-input">
+                            </div>
                         </div>
-                    </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="demo1">登陆</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </form>
                 </div>
-            </div>
-            <div class="item-btn">
-                <a class="layui-btn layui-btn-normal" href="login.html">登陆 / 注册</a>
             </div>
         </div>
     </div>
@@ -129,5 +131,4 @@
 		</div>
 	</script>
 </body>
-
 </html>

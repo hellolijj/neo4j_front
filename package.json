@@ -1,0 +1,25 @@
+{
+  "name": "neo4j_front",
+  "version": "1.0.0",
+  "description": "这是《数据库》课程 张亶老师的neo4j作业的前端代码。作业要求使用neo4j数据库实现一个好友动态管理的web系统。 系统实现了动态管理、好友管理、用户信息管理等功能",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server . -p 8888 & npm run mock",
+    "mock":"json-server -w json-server/mock.json -p 5002"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellolijj/neo4j_front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hellolijj/neo4j_front/issues"
+  },
+  "homepage": "https://github.com/hellolijj/neo4j_front#readme",
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "json-server": "^0.14.0"
+  }
+}

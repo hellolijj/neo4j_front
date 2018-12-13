@@ -1,2 +1,2 @@
-# cnmp install http-server --save-dev 生存的模块
+# cnpm install http-server --save-dev 生存的模块
 node_modules

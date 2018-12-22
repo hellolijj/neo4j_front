@@ -1,0 +1,1 @@
+const base_usr = "http://127.0.0.1/neo4j_mock/index.php/Home"

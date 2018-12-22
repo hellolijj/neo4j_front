@@ -72,28 +72,28 @@
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">注册账号</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入邮箱/手机号"
+                                <input type="text" name="userid" required lay-verify="required" placeholder="请输入邮箱/手机号"
                                     autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="title" required lay-verify="required" placeholder="请输入密码"
+                                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
                                  autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">确认密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="title" required lay-verify="required" placeholder="请输入密码"
+                                <input type="password" name="password_again" required lay-verify="required" placeholder="请输入密码"
                                  autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">昵称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="取一个好听的名字吧"
+                                <input type="text" name="username" required lay-verify="required" placeholder="取一个好听的名字吧"
                                     autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="demo1">注册</button>
+                                <button class="layui-btn" lay-submit="" lay-filter="register">注册</button>
                             </div>
                         </div>
                         
@@ -136,6 +136,7 @@
         layui.config({
             base: '../res/static/js/'
         }).use('blog');
+        
     </script>
     <script id="LAY-msg-tpl" type="text/html">
 		<div class="info-box">
@@ -158,3 +159,43 @@
 	</script>
 </body>
 </html>
+<script src="../res/static/js/jquery.js"></script>
+<script src="../res/index.js"></script>
+<script>
+layui.use('form', function(){
+    var form = layui.form;
+    
+   
+    form.on('submit(register)', function(data){
+
+        $.post(base_usr + "/User/register", data.field, function(res) {
+            if(res.status == 200) {
+
+            } else if(res.status == 405) {
+                layer.alert(res.message, {
+                    title: '错误提示'
+                })
+            }
+        })
+        // $.ajax({
+        //     url: base_usr + "/User/register",
+        //     type: "POST",
+        //     data: data.field, 
+        //     success: function(res) {
+        //     },
+        //     error: function(res) {
+        //         if(res.status == 405) {
+        //             alert(res.)   
+        //         }
+        //     },
+            
+        // });
+        
+        return false;
+    })
+});
+
+        
+    
+  </script>
+

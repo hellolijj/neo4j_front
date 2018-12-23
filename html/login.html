@@ -72,20 +72,20 @@
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">登陆账号</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入邮箱/手机号"
+                                <input type="text" name="userid" required lay-verify="required" placeholder="请输入邮箱/手机号"
                                     autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="title" required lay-verify="required" placeholder="请输入密码"
+                                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
                                  autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="demo1">登陆</button>
+                                <button class="layui-btn" lay-submit="" lay-filter="login">登陆</button>
                             </div>
                         </div>
                         
@@ -132,3 +132,29 @@
 	</script>
 </body>
 </html>
+<script src='../res/static/js/jquery.js'></script>
+<script src='../res/static/js/jquery.cookie.js'></script>
+<script src="../res/index.js"></script>
+
+<script>
+layui.use('form', function(){
+    var form = layui.form;
+    form.on('submit(login)', function(data){
+
+        $.post(base_usr + "/User/login", data.field, function(res) {
+            if(res.status == 200) {
+                console.log(res)
+            } else if(res.status == 405) {
+                layer.alert(res.message, {
+                    title: '错误提示'
+                })
+            }
+        })
+       
+        return false;
+    })
+});
+
+        
+    
+</script>

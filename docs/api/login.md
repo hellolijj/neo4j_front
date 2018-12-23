@@ -21,8 +21,17 @@ response
 {
   "status": 200
   "message": ""
+  "data": {
+    "userid": "hello_lijj@qq.com",
+    "avatar": ""
+    "username": "软院小哥哥",
+    "sex":"男",
+    "desc": "我是软院的小哥哥"
+  }
 }
 ```
+
+
 如果有错误，错误message将会提示用户
 ```
 {

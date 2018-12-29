@@ -111,46 +111,26 @@
             base: '../res/static/js/'
         }).use('blog');
     </script>
-    <script id="LAY-msg-tpl" type="text/html">
-		<div class="info-box">
-			<div class="info-item">
-				<img class="info-img" src="{{ d.avatar }}" alt="">
-			  <div class="info-text">
-					<p class="title">
-					  <span class="name">{{ d.username }}</span>
-					  <span class="info-img">
-					  	<i class="layui-icon layui-icon-praise"></i>
-					  	{{ d.praise }}
-					 	</span>
-					</p>
-					<p class="info-intr">
-						{{ d.content }}
-					</p>
-			  </div>
-			</div>
-		</div>
-	</script>
 </body>
 </html>
 <script src='../res/static/js/jquery.js'></script>
-<script src='../res/static/js/jquery.cookie.js'></script>
-<script src="../res/index.js"></script>
 
 <script>
+const base_usr = "http://127.0.0.1/neo4j_mock/index.php/Home"
 layui.use('form', function(){
     var form = layui.form;
     form.on('submit(login)', function(data){
-
         $.post(base_usr + "/User/login", data.field, function(res) {
             if(res.status == 200) {
-                console.log(res)
+                localStorage.setItem('user', res.data)
+                localStorage.setItem('lastRequest', res.time)
+                window.location.href = 'index.html'
             } else if(res.status == 405) {
                 layer.alert(res.message, {
                     title: '错误提示'
                 })
             }
         })
-       
         return false;
     })
 });

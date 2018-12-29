@@ -51,48 +51,36 @@
     </div>
     <div class="container-wrap">
         <div class="container container-message container-details container-comment">
-            <div class="contar-wrap">
-                <div class="item">
-                    <div class="logo" style="float:left; margin-left: 22px;">
-                        <img src="../res/static/images/info-img.png" alt="">
-                    </div>
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-
-                        <h3>我们的故事才刚刚开始</h3>
-                        <h5>发布于：<span>刚刚</span></h5>
-
-                        <p>我想谁也不会留意，那是一个阳光明媚的中午</p>
-                        <img src="../res/static/images/item.png" alt="帅哥">
-                        <div class="count layui-clear">
-                            <span class="pull-left">点赞 <em>100000+</em></span>
-                            <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="logo" style="float:left; margin-left: 22px;">
-                        <img src="../res/static/images/info-img.png" alt="">
-                    </div>
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-
-                        <h3>拥有诗意的心态,才能拥有诗意的生活</h3>
-                        <h5>发布于：<span>刚刚</span></h5>
-
-                        <p>父爱如山，不善表达。回想十多年前，总记得父亲有个宽厚的肩膀，小小的自己跨坐在上面，越过人山人海去看更广阔的天空，那个时候期望自己有一双翅膀，能够像鸟儿一样飞得高，看得远。虽然父亲有时会和自己开玩笑，但在做错事的时候会受到严厉的训斥。</p>
-                        <img src="../res/static/images/item.png" alt="帅哥">
-                        <div class="count layui-clear">
-                            <span class="pull-left">点赞 <em>100000+</em></span>
-                            <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-btn">
-                <a class="layui-btn layui-btn-normal" href="login.html">登陆 / 注册</a>
+            <div class="contar-wrap" id="dynamic-contents-view">
             </div>
         </div>
     </div>
+    <script id="dynamic-contents" type="text/html">
+        {{#  layui.each(d.list, function(index, item){ }}
+        <div class="item">
+            <div class="logo" style="float:left; margin-left: 22px;">
+                <img src="../res/static/images/info-img.png" alt="">
+            </div>
+            <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
+
+                <h3>{{ item.username }}</h3>
+                <h5>发布于：<span>{{ item.time }}</span></h5>
+
+                <p>{{ item.contents }}</p>
+                <img src="../res/static/images/item.png" alt="帅哥">
+                <div class="count layui-clear">
+                    <span class="pull-left">点赞 <em>100000+</em></span>
+                    <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
+                </div>
+            </div>
+        </div>
+        {{#  }); }}
+        {{#  if(d.list.length === 0){ }}
+        无数据
+        {{#  } }} 
+    
+    </script>
+
     <div class="footer">
         <p>
             <span>&copy; 2018</span>
@@ -101,33 +89,49 @@
         </p>
         <p><span>人生就是一场修行</span></p>
     </div>
-    <script src="../res/layui/layui.js">
 
-    </script>
-    <script>
-        layui.config({
-            base: '../res/static/js/'
-        }).use('blog');
-    </script>
-    <script id="LAY-msg-tpl" type="text/html">
-		<div class="info-box">
-			<div class="info-item">
-				<img class="info-img" src="{{ d.avatar }}" alt="">
-			  <div class="info-text">
-					<p class="title">
-					  <span class="name">{{ d.username }}</span>
-					  <span class="info-img">
-					  	<i class="layui-icon layui-icon-praise"></i>
-					  	{{ d.praise }}
-					 	</span>
-					</p>
-					<p class="info-intr">
-						{{ d.content }}
-					</p>
-			  </div>
-			</div>
-		</div>
-	</script>
+    <script src="../res/layui/layui.js"></script>
+    <script src='../res/static/js/jquery.js'></script>
+    <script src="../res/index.js"></script>
+
+
+
+
 </body>
 
 </html>
+
+<script>
+    layui.config({
+        base: '../res/static/js/'
+    }).use('blog');
+
+    $.get(base_usr + "/Dynamic/itemsList", {userid: "hello_lijj@qq.com"}, function(res) {
+        if(res.status == 200) {
+            console.log(res)
+        } else if(res.status == 405) {
+            layer.alert(res.message, {
+                title: '错误提示'
+            })
+        }
+    })
+
+
+    layui.use('laytpl', function () {
+        laytpl = layui.laytpl;
+        var data = {
+            "list": [
+                { "username": "弹层", "contents": "layer", "time": "layer.layui.com" },
+                { "username": "弹层", "contents": "layer", "time": "layer.layui.com" }
+            ]
+        };
+        var getTpl = document.getElementById('dynamic-contents').innerHTML
+        var view = document.getElementById('dynamic-contents-view');
+        laytpl(getTpl).render(data, function (html) {
+            view.innerHTML = html;
+        });
+
+    });
+
+
+</script>

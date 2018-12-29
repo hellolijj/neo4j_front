@@ -1,6 +1,6 @@
 # 查看好友动态
 
-GET:  /user/frient_list
+GET:  /Dynamic/getList
 
 request body:
 ```

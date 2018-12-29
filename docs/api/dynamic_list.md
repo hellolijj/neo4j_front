@@ -17,8 +17,9 @@ response
 返回成功
 ```
 {
-  "status": 200
-  "message": ""
+  "status": 200,
+  "message": "",
+  "time": 1546087085
   "data": {
     "dynamic_lists": [
         {

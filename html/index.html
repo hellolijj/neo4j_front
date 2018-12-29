@@ -28,7 +28,7 @@
             </form>
             <div class="blog-nav pull-right">
                 <ul class="layui-nav pull-left ">
-                    <li class="layui-nav-item layui-this"><a href="activity.html">动态</a></li>
+                    <li class="layui-nav-item layui-this"><a href="">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
                     <li class="layui-nav-item"><a href="manage.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
@@ -51,7 +51,16 @@
     </div>
     <div class="container-wrap">
         <div class="container container-message container-details container-comment">
-            <div class="contar-wrap" id="dynamic-contents-view">
+            <div class="contar-wrap">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item layui-form-text">
+                        <textarea class="layui-textarea" name="contents" style="resize:none" placeholder="写点什么啊"></textarea>
+                    </div>
+                    <div class="item-btn">
+                        <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="dynamic-create">发布</button>
+                    </div>
+                </form>
+                <div id="dynamic-contents-view"></div>
             </div>
         </div>
     </div>
@@ -97,26 +106,58 @@
     <script src='../res/static/js/jquery.js'></script>
     <script src="../res/index.js"></script>
 
-
-
-
 </body>
 
 </html>
+<script>
+    
+</script>
 
 <script>
     layui.config({
         base: '../res/static/js/'
     }).use('blog');
 
-    dynamicData = ""
-    
-    $.get(base_usr + "/Dynamic/itemsList", {userid: "hello_lijj@qq.com"}, function(res) {
-        if(res.status == 200) {
-            localStorage.setItem('lastRequest', res.time)
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('submit(dynamic-create)', function (data) {
+            user = localStorage.getItem("user")
             
-            
+            // 输入框内容为空
+            if(!data.field.contents) {
+                layer.alert("输入内容不能为空", {
+                        title: '错误提示'
+                    })
+                return false;
+            }
+            sent_data = {
+                "userid": user.userid,
+                "contents": data.field.contents
+            }
+            $.post(base_usr + "/Dynamic/create", sent_data, function(res) {
+                if(res.status == 200) {
+                    localStorage.setItem('lastRequest', res.time)
+                    layer.msg('动态创建成功！ 刷新更新动态', {
+                        icon: 1
+                    });                   
+                } else if(res.status == 405) {
+                    layer.alert(res.message, {
+                        title: '错误提示'
+                    })
+                }
+            })
+            return false;
+        })
+    });
 
+
+
+
+    $.get(base_usr + "/Dynamic/itemsList", { userid: "hello_lijj@qq.com" }, function (res) {
+        if (res.status == 200) {
+            localStorage.setItem('lastRequest', res.time)
+
+            // layui 使用模版
             layui.use('laytpl', function () {
                 laytpl = layui.laytpl;
                 data = {
@@ -130,14 +171,14 @@
                 });
             });
 
-        } else if(res.status == 405) {
+        } else if (res.status == 405) {
             layer.alert(res.message, {
                 title: '错误提示'
             })
         }
     })
-    
-    
+
+
 
 
 </script>

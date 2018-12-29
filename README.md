@@ -9,36 +9,28 @@
 
 ## 页面说明
 
-### 动态
-
-- 查看自己和好友的所有动态
-- 发布动态
-- 删除动态
-- 动态修改
-
-### 好友
-
-- 添加好友
-- 删除好友
-- 好友列表
-
-### 信息管理
-
-- 注册
-- 修改信息
-- 登陆
-- 推出
-
 ### 接口文档
+
+#### 个人信息
 
 - [登录](./docs/api/login.md)
 - [退出](./docs/api/logout.md)
 - [注册](./docs/api/register.md)
+- [修改信息（暂时可以不做）](./docs/api/info_change.md)
+ 
+#### 好友管理
+
 - [添加好友](./docs/api/friend_add.md)
 - [删除好友](./docs/api/friend_delete.md)
 - [好友列表](./docs/api/friend_list.md)
+
+#### 动态管理
+
 - [发布动态](./docs/api/dynamic_create.md)
 - [动态列表](./docs/api/dynamic_list.md)
+- 动态更新（暂时可以不做）
+- 查看自己动态（暂时可以不做）
+- 动态删除(暂时可以不做)
 
 
 ### 小组成员

@@ -14,7 +14,7 @@
 #### 个人信息
 
 - [登录](./docs/api/login.md)
-- [退出](./docs/api/logout.md)
+- [退出（此功能模块不需要开发）](./docs/api/logout.md)
 - [注册](./docs/api/register.md)
 - [修改信息（暂时可以不做）](./docs/api/info_change.md)
  

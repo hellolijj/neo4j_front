@@ -64,7 +64,7 @@
             <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
 
                 <h3>{{ item.username }}</h3>
-                <h5>发布于：<span>{{ item.time }}</span></h5>
+                <h5>发布于：<span>{{ item.create_time }}</span></h5>
 
                 <p>{{ item.contents }}</p>
                 <img src="../res/static/images/item.png" alt="帅哥">
@@ -75,6 +75,9 @@
             </div>
         </div>
         {{#  }); }}
+        <div class="item-btn">
+            <button class="layui-btn layui-btn-normal">下一页</button>
+        </div>
         {{#  if(d.list.length === 0){ }}
         无数据
         {{#  } }} 
@@ -106,32 +109,35 @@
         base: '../res/static/js/'
     }).use('blog');
 
+    dynamicData = ""
+    
     $.get(base_usr + "/Dynamic/itemsList", {userid: "hello_lijj@qq.com"}, function(res) {
         if(res.status == 200) {
-            console.log(res)
+            localStorage.setItem('lastRequest', res.time)
+            
+            
+
+            layui.use('laytpl', function () {
+                laytpl = layui.laytpl;
+                data = {
+                    "list": res.data
+                };
+                console.log(data)
+                var getTpl = document.getElementById('dynamic-contents').innerHTML
+                var view = document.getElementById('dynamic-contents-view');
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            });
+
         } else if(res.status == 405) {
             layer.alert(res.message, {
                 title: '错误提示'
             })
         }
     })
-
-
-    layui.use('laytpl', function () {
-        laytpl = layui.laytpl;
-        var data = {
-            "list": [
-                { "username": "弹层", "contents": "layer", "time": "layer.layui.com" },
-                { "username": "弹层", "contents": "layer", "time": "layer.layui.com" }
-            ]
-        };
-        var getTpl = document.getElementById('dynamic-contents').innerHTML
-        var view = document.getElementById('dynamic-contents-view');
-        laytpl(getTpl).render(data, function (html) {
-            view.innerHTML = html;
-        });
-
-    });
+    
+    
 
 
 </script>

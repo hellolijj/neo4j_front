@@ -25,14 +25,14 @@ response
             "userid": "hello_lijj@qq.com",
             "avatar": ""
             "username": "软院小哥哥",
-            "info":"今天天气很好呀",
+            "contents":"今天天气很好呀",
             "create_time": "2018-12-22 13:24"
         },
         {
             "userid": "hello_lijj@qq.com",
             "avatar": ""
             "username": "软院小哥哥",
-            "info":"今天天气很好呀",
+            "contents":"今天天气很好呀",
             "create_time": "2018-12-22 13:24"
         },
         {

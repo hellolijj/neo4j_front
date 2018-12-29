@@ -31,7 +31,15 @@
 
 ### 接口文档
 
-todo
+- [登录](./docs/api/login.md)
+- [退出](./docs/api/logout.md)
+- [注册](./docs/api/register.md)
+- [添加好友](./docs/api/friend_add.md)
+- [删除好友](./docs/api/friend_delete.md)
+- [好友列表](./docs/api/friend_list.md)
+- [发布动态](./docs/api/dynamic_create.md)
+- [动态列表](./docs/api/dynamic_list.md)
+
 
 ### 小组成员
 

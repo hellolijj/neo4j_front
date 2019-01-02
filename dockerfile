@@ -9,7 +9,6 @@ WORKDIR /usr/src/node
 COPY . /usr/src/node
 
 RUN cnpm install
-RUN npm run build
 
 EXPOSE 8888
 

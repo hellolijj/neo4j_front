@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server ./html -p 8888"
+    "start": "http-server ./html -p 8888",
+    "build": "umi build"
   },
   "repository": {
     "type": "git",

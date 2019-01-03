@@ -1,3 +1,5 @@
 # cnpm install http-server --save-dev 生存的模块
 html/node_modules
-mock/Application/Runtime
+mock/Application/Runtime/Logs/Home*
+.idea
+*.log

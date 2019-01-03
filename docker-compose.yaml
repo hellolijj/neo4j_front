@@ -1,0 +1,17 @@
+api:
+  image: navidonskis/nginx-php5.6
+  container_name: api
+  restart: always
+  volumes:
+    - ./mock/:/var/www:rw
+  ports:
+    - "52000:80"
+
+front:
+  build: ./html
+  container_name: front
+  restart: always
+  volumes:
+    - ./html:/usr/src/node:rw
+  ports:
+    - "52001:80"

@@ -1,5 +1,5 @@
 api:
-  image: navidonskis/nginx-php5.6
+  image: chvb/docker-apache-php
   container_name: api
   restart: always
   volumes:

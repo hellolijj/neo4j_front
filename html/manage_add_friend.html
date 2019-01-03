@@ -37,8 +37,9 @@
             </form>
             <div class="blog-nav pull-right">
                 <ul class="layui-nav pull-left ">
-                    <li class="layui-nav-item layui-this"><a href="activity.html">动态</a></li>
+                    <li class="layui-nav-item"><a href="activity.html">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
+                    <li class="layui-nav-item layui-this"><a href="manage_info.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
                     <li class="layui-nav-item">
                         <a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
@@ -79,13 +80,13 @@
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">好友id</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="sunchao_baba"
+                                <input type="text" name="friend_id" required lay-verify="required" placeholder="sunchao_baba"
                                     autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit="" lay-filter="demo1">添加</button>
+                                <button class="layui-btn" lay-submit="" lay-filter="friend_add">添加</button>
                             </div>
                         </div>
                     </form>
@@ -101,33 +102,36 @@
         </p>
         <p><span>人生就是一场修行</span></p>
     </div>
-    <script src="./res/layui/layui.js">
-
-    </script>
+    <script src="./res/layui/layui.js"></script>
+    <script src='./res/static/js/jquery.js'></script>
+    <script src="./res/index.js"></script>
     <script>
         layui.config({
             base: './res/static/js/'
         }).use('blog');
+        layui.use('form', function(){
+            var form = layui.form;
+            var user = localStorage.getItem("user")
+            form.on('submit(friend_add)', function(data){
+                var send_data = {
+                    'userid': user.userid,
+                    'friend_id': data.friend_id
+                }
+                $.post(base_usr + "/User/friend_add", send_data, function(res) {
+                    if(res.status == 200) {
+                        localStorage.setItem('lastRequest', res.time)
+                        // window.location.href = 'index.html'
+                    } else if(res.status == 405) {
+                        layer.alert(res.message, {
+                            title: '错误提示'
+                        })
+                    }
+                })
+                return false;
+            })
+        });
     </script>
-    <script id="LAY-msg-tpl" type="text/html">
-		<div class="info-box">
-			<div class="info-item">
-				<img class="info-img" src="{{ d.avatar }}" alt="">
-			  <div class="info-text">
-					<p class="title">
-					  <span class="name">{{ d.username }}</span>
-					  <span class="info-img">
-					  	<i class="layui-icon layui-icon-praise"></i>
-					  	{{ d.praise }}
-					 	</span>
-					</p>
-					<p class="info-intr">
-						{{ d.content }}
-					</p>
-			  </div>
-			</div>
-		</div>
-	</script>
+    
 </body>
 
 </html>

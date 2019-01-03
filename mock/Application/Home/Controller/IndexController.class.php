@@ -5,7 +5,9 @@ use Think\Controller;
 class IndexController extends Controller {
 
     public function index() {
-        echo "mock api";
+
+        echo 232424;
+        
     }
 
 

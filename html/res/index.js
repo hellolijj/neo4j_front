@@ -1,5 +1,5 @@
 // 定义测试路径
-const base_usr = "http://127.0.0.1:52000/index.php/Home"
+base_usr = "http://127.0.0.1:52000/index.php/Home"
 
 // 检测是否登录, 时间判断
 var lastRequest = localStorage.getItem('lastRequest')
@@ -16,3 +16,5 @@ logout = function(){
         title: '提示'
     })
 }
+
+console.log(base_usr)

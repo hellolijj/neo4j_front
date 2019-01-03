@@ -28,9 +28,9 @@
 			</form>
 			<div class="blog-nav pull-right">
 				<ul class="layui-nav pull-left">
-					<li class="layui-nav-item"><a href="activity.html">动态</a></li>
+					<li class="layui-nav-item"><a href="index.html">动态</a></li>
 					<li class="layui-nav-item layui-this"><a href="friend.html">好友</a></li>
-					<li class="layui-nav-item"><a href="manage.html">管理</a></li>
+					<li class="layui-nav-item"><a href="manage_info.html">管理</a></li>
 					<li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
 					<li class="layui-nav-item">
 						<a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
@@ -49,86 +49,98 @@
 	<div class="container-wrap">
 		<div class="container container-message container-details container-comment">
 			<div class="contar-wrap">
-
-				<div class="item">
-					<div class="logo" style="float:left; margin-left: 22px;">
-						<img src="./res/static/images/info-img.png" alt="">
-					</div>
-					<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-						<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;">删除</button>
-						<h3 style="line-height:70px;">做美工的程序员</h3>
-
-					</div>
-				</div>
-				<div class="item">
-					<div class="logo" style="float:left; margin-left: 22px;">
-						<img src="./res/static/images/info-img.png" alt="">
-					</div>
-					<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-						<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;">删除</button>
-						<h3 style="line-height:70px;">做美工的程序员</h3>
-
-					</div>
-				</div>
-				<div class="item">
-					<div class="logo" style="float:left; margin-left: 22px;">
-						<img src="./res/static/images/info-img.png" alt="">
-					</div>
-					<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-						<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;">删除</button>
-						<h3 style="line-height:70px;">做美工的程序员</h3>
-
-					</div>
-				</div>
-				<div class="item">
-					<div class="logo" style="float:left; margin-left: 22px;">
-						<img src="./res/static/images/info-img.png" alt="">
-					</div>
-					<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-						<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;">删除</button>
-						<h3 style="line-height:70px;">做美工的程序员</h3>
-
-					</div>
-				</div>
+				<div id="friend-lists-view"></div>
 			</div>
 			<div id="test1" class="paging"></div>
 		</div>
 	</div>
+
+	<script id="friend-lists" type="text/html">
+        {{#  layui.each(d.list, function(index, item){ }}
+        <div class="item">
+				<div class="logo" style="float:left; margin-left: 22px;">
+					<img src="{{ item.avatar }}" alt="" style="width:65px;">
+				</div>
+				<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
+					<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete({{ item.userid }}, '{{ item.username }}')">删除</button>
+					<h3 style="line-height:70px;">{{ item.username }}</h3>
+				</div>
+			</div>
+        {{#  }); }}
+        {{#  if(d.list.length === 0){ }}
+        无数据
+        {{#  } }} 
+    
+	</script>
+	
 	<div class="footer">
 		<p>
-			<span>&copy; 2018</span>
+			<span>&copy; 2018 - 2019</span>
 			<span><a href="https://github.com/hellolijj/neo4j_front" target="_blank">github</a></span>
-			<span>MIT license</span>
 		</p>
-		<p><span>亲言亲语 记录你的小心情</span></p>
+		<p><span>轻言轻语 记录你的小心情</span></p>
 	</div>
-	<script src="./res/layui/layui.js">
-
-	</script>
-	<script>
-		layui.config({
-			base: './res/static/js/'
-		}).use('blog');
-	</script>
-	<script id="LAY-msg-tpl" type="text/html">
-		<div class="info-box">
-			<div class="info-item">
-				<img class="info-img" src="{{ d.avatar }}" alt="">
-			  <div class="info-text">
-					<p class="title">
-					  <span class="name">{{ d.username }}</span>
-					  <span class="info-img">
-					  	<i class="layui-icon layui-icon-praise"></i>
-					  	{{ d.praise }}
-					 	</span>
-					</p>
-					<p class="info-intr">
-						{{ d.content }}
-					</p>
-			  </div>
-			</div>
-		</div>
-	</script>
+	
 </body>
-
 </html>
+
+<script src="./res/layui/layui.js"></script>
+<script src='./res/static/js/jquery.js'></script> 
+<script src="./res/index.js"></script>
+
+
+<script>
+	layui.config({
+		base: './res/static/js/'
+	}).use('blog');
+	user = localStorage.getItem("user")
+	sent_data = {"userid": user.userid}
+	let base_url = "http://127.0.0.1:52000/index.php/Home"
+	
+	$.get(base_url + "/User/friend_list", sent_data, function (res) {
+		if (res.status == 200) {
+			localStorage.setItem('lastRequest', res.time)
+			// layui 使用模版
+            layui.use('laytpl', function () {
+                laytpl = layui.laytpl;
+                data = {
+                    "list": res.data
+                };
+                var getTpl = document.getElementById('friend-lists').innerHTML
+                var view = document.getElementById('friend-lists-view');
+                laytpl(getTpl).render(data, function (html) {
+                    view.innerHTML = html;
+                });
+            });
+		} else if (res.status == 405) {
+			layer.alert(res.message, {
+                title: '错误提示'
+            })
+		}
+	})
+
+	function friend_delete(userid, username) {
+		layer.open({
+			content: '你确认要删除好友【' + username + '】吗？'
+			,btn: ['确定', '取消']
+			,yes: function(index, layero){
+				sent_data = {
+					"userid": user.userid, 
+					"friend_id": userid
+				}
+				
+				$.post(base_usr + "/User/friend_delete", data.field, function(res) {
+					if(res.status == 200) {
+						localStorage.setItem('lastRequest', res.time)
+						window.location.href = 'friend.html'
+					} else if(res.status == 405) {
+						layer.alert(res.message, {
+							title: '错误提示'
+						})
+					}
+				})
+			}
+		});
+
+	}
+</script>

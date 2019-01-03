@@ -1,7 +1,7 @@
 # 修改用户信息
 
 
-POST:  /user/update
+POST:  /User/info_update
 
 
 request body:

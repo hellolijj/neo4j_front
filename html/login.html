@@ -37,8 +37,9 @@
             </form>
             <div class="blog-nav pull-right">
                 <ul class="layui-nav pull-left ">
-                    <li class="layui-nav-item"><a href="activity.html">动态</a></li>
+                    <li class="layui-nav-item"><a href="index.html">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
+                    <li class="layui-nav-item"><a href="manage_info.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
                 </ul>
                 <a href="#" class="personal pull-left">
@@ -80,7 +81,7 @@
                             <label class="layui-form-label">密码</label>
                             <div class="layui-input-block">
                                 <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
-                                 autocomplete="off" class="layui-input">
+                                    autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -88,20 +89,20 @@
                                 <button class="layui-btn" lay-submit="" lay-filter="login">登陆</button>
                             </div>
                         </div>
-                        
-                        
+
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <div class="footer">
-		<p>
-			<span>&copy; 2018 - 2019</span>
-			<span><a href="https://github.com/hellolijj/neo4j_front" target="_blank">github</a></span>
-		</p>
-		<p><span>轻言轻语 记录你的小心情</span></p>
-	</div>span>人生就是一场修行</span></p>
+        <p>
+            <span>&copy; 2018 - 2019</span>
+            <span><a href="https://github.com/hellolijj/neo4j_front" target="_blank">github</a></span>
+        </p>
+        <p><span>轻言轻语 记录你的小心情</span></p>
+    </div>span>人生就是一场修行</span></p>
     </div>
     <script src="./res/layui/layui.js">
 
@@ -112,29 +113,27 @@
         }).use('blog');
     </script>
 </body>
+
 </html>
 <script src='./res/static/js/jquery.js'></script>
 
 <script>
-var base_usr = "http://127.0.0.1/neo4j_mock/index.php/Home"
-layui.use('form', function(){
-    var form = layui.form;
-    form.on('submit(login)', function(data){
-        $.post(base_usr + "/User/login", data.field, function(res) {
-            if(res.status == 200) {
-                localStorage.setItem('user', res.data)
-                localStorage.setItem('lastRequest', res.time)
-                window.location.href = 'index.html'
-            } else if(res.status == 405) {
-                layer.alert(res.message, {
-                    title: '错误提示'
-                })
-            }
+    var base_usr = "http://127.0.0.1/neo4j_mock/index.php/Home"
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('submit(login)', function (data) {
+            $.post(base_usr + "/User/login", data.field, function (res) {
+                if (res.status == 200) {
+                    localStorage.setItem('user', res.data)
+                    localStorage.setItem('lastRequest', res.time)
+                    window.location.href = 'index.html'
+                } else if (res.status == 405) {
+                    layer.alert(res.message, {
+                        title: '错误提示'
+                    })
+                }
+            })
+            return false;
         })
-        return false;
-    })
-});
-
-        
-    
+    });
 </script>

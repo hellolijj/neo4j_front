@@ -2,7 +2,7 @@
 
 查看好友列表
 
-GET:  /user/frient_list
+GET:  /User/frient_list
 
 request body:
 ```

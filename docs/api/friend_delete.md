@@ -2,7 +2,7 @@
 
 删除好友不需要对方同意，一旦一方删除好友，两人即解除好友关系
 
-POST:  /user/friend_delete
+POST:  /User/friend_delete
 
 request body:
 ```

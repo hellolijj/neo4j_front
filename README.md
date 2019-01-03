@@ -7,7 +7,17 @@
 
 演示demo: http://39.108.77.125/
 
-## 页面说明
+## 项目部署
+
+
+
+```
+$ git clone https://github.com/hellolijj/neo4j_front.git
+$ cd neo4j_front
+$ docker-compose up -d
+```
+
+## 功能模块
 
 ### 接口文档
 
@@ -36,18 +46,11 @@
 
 #### 分工
 
-前端：
+- 前端：邵迪龙、[李俊君](https://github.com/hellolijj) 
 
-- 邵迪龙
-- [李俊君](https://github.com/hellolijj)
+- 后端：孙超等3人
 
-后端
-
-- 孙超
-
-数据库
-
-3人
+- 数据库：鲁佳南等3人
 
 
 

@@ -71,7 +71,7 @@
                         <div class="layui-form-item-item">
                             <label class="layui-form-label">姓名</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" required lay-verify="required" placeholder="孙超爸爸"
+                                <input type="text" name="username" required lay-verify="required" placeholder="孙超爸爸"
                                     autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -122,13 +122,19 @@
         var form = layui.form;
         var user = localStorage.getItem("user")
         form.on('submit(info_update)', function(data){
-            var send_data = {
-                'userid': user.userid,
-                'friend_id': data.friend_id
+
+            console.log(user.userid)
+            
+
+            send_data = {
+                userid: user.userid,
+
             }
-            $.post(base_usr + "/User/friend_add", send_data, function(res) {
+
+            $.post(base_usr + "/User/info_update", send_data, function(res) {
                 if(res.status == 200) {
-                    localStorage.setItem('lastRequest', res.time)
+                    console.log(res)
+                    // localStorage.setItem('lastRequest', res.time)
                     // window.location.href = 'index.html'
                 } else if(res.status == 405) {
                     layer.alert(res.message, {

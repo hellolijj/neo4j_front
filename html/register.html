@@ -169,8 +169,8 @@ layui.use('form', function(){
     
    
     form.on('submit(register)', function(data){
-
-        $.post(base_usr + "/User/register", data.field, function(res) {
+        var base = "http://104.160.43.250:8888"
+        $.post(base_usr + "/user/register", data.field, function(res) {
             if(res.status == 200) {
 
             } else if(res.status == 405) {

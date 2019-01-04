@@ -12,6 +12,7 @@ request body:
   "sex":"男",
   "desc": "我是软院的小哥哥"
 }
+
 ```
 | field      |  is_require |type     | description | 
 | :--------  | ------------|--------:| :------     | 

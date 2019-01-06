@@ -115,8 +115,6 @@
     layui.use('form', function () {
         var form = layui.form;
         form.on('submit(dynamic-create)', function (data) {
-            user = localStorage.getItem("user")
-
             // 输入框内容为空
             if (!data.field.contents) {
                 layer.alert("输入内容不能为空", {
@@ -143,6 +141,7 @@
             return false;
         })
     });
+    user = localStorage.getItem("user")
 
     $.get(base_usr + "/Dynamic/itemsList", { userid: "hello_lijj@qq.com" }, function (res) {
         if (res.status == 200) {
@@ -154,7 +153,6 @@
                 data = {
                     "list": res.data
                 };
-                console.log(data)
                 var getTpl = document.getElementById('dynamic-contents').innerHTML
                 var view = document.getElementById('dynamic-contents-view');
                 laytpl(getTpl).render(data, function (html) {

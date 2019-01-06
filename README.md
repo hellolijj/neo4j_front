@@ -5,17 +5,16 @@
 
 ## 系统访问
 
-演示demo: http://39.108.77.125/
-
+项目后端：https://github.com/ccdongyu/neo4j-backend/
 ## 项目部署
-
-
 
 ```
 $ git clone https://github.com/hellolijj/neo4j_front.git
 $ cd neo4j_front
 $ docker-compose up -d
 ```
+项目地址：127.0.0.1:52000
+后端mock地址：127.0.0.1:52001
 
 ## 功能模块
 

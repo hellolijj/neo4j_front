@@ -182,6 +182,7 @@ layui.use('form', function(){
                     localStorage.setItem('userid', data.field.userid)
                     localStorage.setItem('username', data.field.username)
                     localStorage.setItem('lastRequest', res.time)
+                    window.load.href = 'index.html'
                 } else {
                     layer.alert(res.message, {
                         title: '错误提示'

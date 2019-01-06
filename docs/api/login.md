@@ -1,6 +1,6 @@
 # 登录模块
 
-POST:  /user/login
+GET:  /user/login
 
 request body:
 ```

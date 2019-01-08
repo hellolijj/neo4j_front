@@ -150,7 +150,7 @@
     });
     user = localStorage.getItem("user")
 
-    $.get(base_usr + "/Dynamic/itemsList", { userid: localStorage.getItem('userid') }, function (res) {
+    $.get(base_usr + "/Dynamic/getList", { userid: localStorage.getItem('userid') }, function (res) {
         if (res.status == 200) {
             localStorage.setItem('lastRequest', res.time)
 
@@ -158,7 +158,7 @@
             layui.use('laytpl', function () {
                 laytpl = layui.laytpl;
                 data = {
-                    "list": res.data
+                    "list": res.data.dynamic_lists
                 };
                 var getTpl = document.getElementById('dynamic-contents').innerHTML
                 var view = document.getElementById('dynamic-contents-view');

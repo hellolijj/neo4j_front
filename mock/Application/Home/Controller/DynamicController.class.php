@@ -4,7 +4,7 @@ use Think\Controller;
 
 class DynamicController extends CommonController {
 
-    public function itemsList() {
+    public function getList() {
 
         $data = [
             [
@@ -30,7 +30,7 @@ class DynamicController extends CommonController {
             ],
         ];
 
-        $this->successReturn("", $data);
+        $this->successReturn("", ["dynamic_lists" => $data]);
 
 
     }

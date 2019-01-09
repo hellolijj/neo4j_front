@@ -27,6 +27,10 @@ response
             "avatar": ""
             "username": "软院小哥哥",
             "contents":"今天天气很好呀",
+            "contents_img":[
+              "http://www.pptok.com/wp-content/uploads/2012/08/xunguang-4.jpg",
+              "http://5b0988e595225.cdn.sohucs.com/images/20181219/aec27193b3834a1694f535ba307995ad.jpeg"
+            ],
             "create_time": "2018-12-22 13:24"
         },
         {
@@ -34,6 +38,10 @@ response
             "avatar": ""
             "username": "软院小哥哥",
             "contents":"今天天气很好呀",
+            "contents_img":[
+              "http://www.pptok.com/wp-content/uploads/2012/08/xunguang-4.jpg",
+              "http://5b0988e595225.cdn.sohucs.com/images/20181219/aec27193b3834a1694f535ba307995ad.jpeg"
+            ],
             "create_time": "2018-12-22 13:24"
         },
         {
@@ -41,6 +49,8 @@ response
             "avatar": ""
             "username": "软院小哥哥",
             "info":"今天天气很好呀",
+            "contents_img":[
+            ],
             "create_time": "2018-12-22 13:24"
         },
         {
@@ -48,6 +58,7 @@ response
             "avatar": ""
             "username": "软院小哥哥",
             "info":"今天天气很好呀",
+            "contents_img":[],
             "create_time": "2018-12-22 13:24"
         }
     ]

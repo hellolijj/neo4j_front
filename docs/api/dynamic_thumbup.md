@@ -12,7 +12,7 @@ request body:
 | field      |  is_require |type     | description | 
 | :--------  | ------------|--------:| :------     | 
 | userid     |   yes       | string  | 用户登录账号 | 
-| dynamicid     |   yes       | int  | 用户登录账号 | 
+| dynamicid     |   yes       | int  | 动态id | 
 
 
 response

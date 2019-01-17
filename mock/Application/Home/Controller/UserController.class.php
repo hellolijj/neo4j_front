@@ -15,16 +15,29 @@ class UserController extends  CommonController {
 
     public function login() {
         if (IS_POST) {
-            $user_id = trim(I('user_id'));
-            $user = '{
-                "userid": "hello_lijj@qq.com",
-                "avatar": "",
-                "username": "软院小哥哥",
-                "sex":"男",
-                "desc": "我是软院的小哥哥"
-              }';
-            $user_arr = json_decode($user);
-            $this->successReturn("", $user_arr);
+
+            $user_id = trim(I('userid'));
+            $data = [
+                'userid' => $user_id,
+                'avatar' => '',
+                'username' => 'asdfaf',
+                'sex' => '男',
+                'desc' => 'sad 发顺丰大事发生'
+            ];
+
+
+            $this->successReturn("", $data);
+            
+            // $user_id = trim(I('user_id'));
+            // $user = '{
+            //     "userid": "hello_lijj@qq.com",
+            //     "avatar": "",
+            //     "username": "软院小哥哥",
+            //     "sex":"男",
+            //     "desc": "我是软院的小哥哥"
+            //   }';
+            // $user_arr = json_decode($user);
+            // $this->successReturn("", $user_arr);
 
         } else {
             $this->errorReturn("post格式");

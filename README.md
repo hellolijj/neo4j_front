@@ -5,17 +5,16 @@
 
 ## 系统访问
 
-演示demo: http://39.108.77.125/
-
+项目后端：https://github.com/ccdongyu/neo4j-backend/
 ## 项目部署
-
-
 
 ```
 $ git clone https://github.com/hellolijj/neo4j_front.git
 $ cd neo4j_front
 $ docker-compose up -d
 ```
+项目地址：127.0.0.1:52000
+后端mock地址：127.0.0.1:52001
 
 ## 功能模块
 
@@ -46,13 +45,17 @@ $ docker-compose up -d
 
 #### 分工
 
-- 前端：邵迪龙、[李俊君](https://github.com/hellolijj) 
+- 前端：
+邵迪龙：好友关系部分
+陈礼昌：登录与注册部分
+[李俊君](https://github.com/hellolijj) ：动态显示部分
 
-- 后端：孙超等3人
+- 后端：
+张雁宇：好友模块的后段逻辑
+唐冬雨：
+孙超：好友推荐接口
+徐凌：信息修改接口
 
-- 数据库：鲁佳南等3人
+- 数据库：鲁佳南
 
-
-
-
-
+- 技术文档部分的书写？

@@ -118,17 +118,20 @@
 <script src='./res/static/js/jquery.js'></script>
 
 <script>
-    //var base_usr = "http://127.0.0.1:52000/index.php/Home"
-    var base_usr = "http://104.160.43.250:8888"
+    // var base_usr = "http://127.0.0.1:52000/index.php/Home"
+    var base_usr = "http://104.160.43.250:8888/"
     layui.use('form', function () {
         var form = layui.form;
         form.on('submit(login)', function (data) {
-            $.post(base_usr + "/User/login", data.field, function (res) {
+            $.get(base_usr + "/User/login", data.field, function (res) {
+                console.log(res)
                 if (res.status == 200) {
-                    localStorage.setItem('user', res.data)
+                    localStorage.setItem('userid', res.data.userid)
+                    localStorage.setItem('avatar', res.data.avatar)
+                    localStorage.setItem('username', res.data.username)
                     localStorage.setItem('lastRequest', res.time)
                     window.location.href = 'index.html'
-                } else if (res.status == 405) {
+                } else {
                     layer.alert(res.message, {
                         title: '错误提示'
                     })

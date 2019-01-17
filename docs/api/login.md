@@ -1,6 +1,6 @@
 # 登录模块
 
-POST:  /user/login
+GET:  /User/login
 
 request body:
 ```
@@ -21,6 +21,7 @@ response
 {
   "status": 200
   "message": ""
+  "time": 
   "data": {
     "userid": "hello_lijj@qq.com",
     "avatar": ""

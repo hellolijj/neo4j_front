@@ -73,7 +73,7 @@
                 <p>{{ item.contents }}</p>
                 <img src="./res/static/images/item.png" alt="帅哥">
                 <div class="count layui-clear">
-                    <span class="pull-left">点赞 <em>100000+</em></span>
+                    <span class="pull-left">阅读 <em>10023</em></span>
                     <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
                 </div>
             </div>
@@ -111,12 +111,11 @@
     layui.config({
         base: './res/static/js/'
     }).use('blog');
+    
 
     layui.use('form', function () {
         var form = layui.form;
         form.on('submit(dynamic-create)', function (data) {
-            user = localStorage.getItem("user")
-
             // 输入框内容为空
             if (!data.field.contents) {
                 layer.alert("输入内容不能为空", {
@@ -125,26 +124,33 @@
                 return false;
             }
             sent_data = {
-                "userid": user.userid,
+                "userid": localStorage.getItem('userid'),
                 "contents": data.field.contents
             }
-            $.post(base_usr + "/Dynamic/create", sent_data, function (res) {
-                if (res.status == 200) {
-                    localStorage.setItem('lastRequest', res.time)
-                    layer.msg('动态创建成功！ 刷新更新动态', {
-                        icon: 1
-                    });
-                } else if (res.status == 405) {
-                    layer.alert(res.message, {
-                        title: '错误提示'
-                    })
-                }
+
+            $.ajax({
+                type:"POST", 
+                url: base_usr + "/Dynamic/create", 
+                contentType:"application/json", 
+                data:JSON.stringify(sent_data),
+                success: function(res) {
+                    
+                    if(res.status == 200) {
+                        window.location.reload()
+                    } else {
+                        layer.alert(res.message, {
+                            title: '错误提示'
+                        })
+                    }
+                } 
             })
+            
             return false;
         })
     });
+    user = localStorage.getItem("user")
 
-    $.get(base_usr + "/Dynamic/itemsList", { userid: "hello_lijj@qq.com" }, function (res) {
+    $.get(base_usr + "/Dynamic/getList", { userid: localStorage.getItem('userid') }, function (res) {
         if (res.status == 200) {
             localStorage.setItem('lastRequest', res.time)
 
@@ -152,9 +158,8 @@
             layui.use('laytpl', function () {
                 laytpl = layui.laytpl;
                 data = {
-                    "list": res.data
+                    "list": res.data.dynamic_lists
                 };
-                console.log(data)
                 var getTpl = document.getElementById('dynamic-contents').innerHTML
                 var view = document.getElementById('dynamic-contents-view');
                 laytpl(getTpl).render(data, function (html) {
@@ -162,7 +167,7 @@
                 });
             });
 
-        } else if (res.status == 405) {
+        } else {
             layer.alert(res.message, {
                 title: '错误提示'
             })

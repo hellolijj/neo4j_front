@@ -167,32 +167,30 @@
 layui.use('form', function(){
     var form = layui.form;
     
+
+    base_usr = "http://104.160.43.250:8888"
+    
    
     form.on('submit(register)', function(data){
-        var base_usr = "http://104.160.43.250:8888"
-        $.post(base_usr + "/User/register", data.field, function(res) {
-            if(res.status == 200) {
-
-            } else if(res.status == 405) {
-                layer.alert(res.message, {
-                    title: '错误提示'
-                })
-            }
+        $.ajax({
+            type:"POST", 
+            url: base_usr + "/User/register", 
+            contentType:"application/json", 
+            data:JSON.stringify(data.field),
+            success: function(res) {
+                console.log(res)
+                if(res.status == 200) {
+                    localStorage.setItem('userid', data.field.userid)
+                    localStorage.setItem('username', data.field.username)
+                    localStorage.setItem('lastRequest', res.time)
+                    window.location.replace("index.html");
+                } else {
+                    layer.alert(res.message, {
+                        title: '错误提示'
+                    })
+                }
+            } 
         })
-        // $.ajax({
-        //     url: base_usr + "/User/register",
-        //     type: "POST",
-        //     data: data.field, 
-        //     success: function(res) {
-        //     },
-        //     error: function(res) {
-        //         if(res.status == 405) {
-        //             alert(res.)   
-        //         }
-        //     },
-            
-        // });
-        
         return false;
     })
 });

@@ -5,7 +5,6 @@ base_usr = "http://104.160.43.250:8888"
 
 // 检测是否登录, 时间判断
 var lastRequest = localStorage.getItem('lastRequest')
-console.log(lastRequest)
 if (lastRequest + 3600 < Date.now() / 1000) {
     alert('缓存失效，请重新登录')
     window.location.href = "login.html"
@@ -18,5 +17,3 @@ logout = function(){
         title: '提示'
     })
 }
-
-console.log(base_usr)

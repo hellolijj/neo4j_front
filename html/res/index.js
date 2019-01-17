@@ -2,6 +2,7 @@
 // base_usr = "http://127.0.0.1:52000/index.php/Home"
 base_usr = "http://104.160.43.250:8888"
 
+
 // 检测是否登录, 时间判断
 var lastRequest = localStorage.getItem('lastRequest')
 console.log(lastRequest)

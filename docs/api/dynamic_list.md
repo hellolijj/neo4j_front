@@ -6,11 +6,14 @@ request body:
 ```
 {
   "userid": "hello_lijj@qq.com",
+  "dynamicid": 123
 }
 ```
 | field      |  is_require |type     | description | 
 | :--------  | ------------|--------:| :------     | 
 | userid     |   yes       | string  | 用户登录账号 | 
+| dynamicid     |   可选       | id  | 动态id | 
+
 
 
 response

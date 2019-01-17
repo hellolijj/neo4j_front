@@ -140,11 +140,10 @@ layui.define(['element', 'form','laypage','jquery','laytpl'],function(exports){
     laytpl(view).render(data, function(html){
       $('#LAY-msg-box').prepend(html);
       elemCont.val('');
-      layer.msg('留言成功', {
+      layer.msg('评论成功', {
         icon: 1
       })
     });
-
   })
 
   // start  图片遮罩

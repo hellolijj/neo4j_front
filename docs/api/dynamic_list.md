@@ -23,6 +23,7 @@ response
   "data": {
     "dynamic_lists": [
         {
+            "dynamicid":234,
             "userid": "hello_lijj@qq.com",
             "avatar": ""
             "username": "软院小哥哥",
@@ -34,6 +35,7 @@ response
             "create_time": "2018-12-22 13:24"
         },
         {
+            "dynamicid":231,
             "userid": "hello_lijj@qq.com",
             "avatar": ""
             "username": "软院小哥哥",
@@ -43,23 +45,11 @@ response
               "http://5b0988e595225.cdn.sohucs.com/images/20181219/aec27193b3834a1694f535ba307995ad.jpeg"
             ],
             "create_time": "2018-12-22 13:24",
-            "comments":[
-              {
-                "userid":"hello@qq.com"
-                "username":"sdfad我而去",
-                "text":"ddddddd3暗示法啊",
-                "create_at":123456756
-              },
-              {
-                "userid":"hello_lijj@qq.com"
-                "username":"sdfad",
-                "text":"ddddddd3",
-                "create_at":1234567
-              }
-            ],
+            "comments":2
             "stars":8
         },
         {
+            "dynamicid":233,
             "userid": "hello_lijj@qq.com",
             "avatar": ""
             "username": "软院小哥哥",
@@ -67,20 +57,7 @@ response
             "contents_img":[
             ],
             "create_time": "2018-12-22 13:24",
-            "comments":[
-              {
-                "userid":"hello@qq.com"
-                "username":"sdfad我而去",
-                "text":"ddddddd3暗示法啊",
-                "create_at":123456756
-              },
-              {
-                "userid":"hello_lijj@qq.com"
-                "username":"sdfad",
-                "text":"ddddddd3",
-                "create_at":1234567
-              }
-            ],
+            "comments":23
             "stars":8
         },
         {
@@ -90,20 +67,7 @@ response
             "info":"今天天气很好呀",
             "contents_img":[],
             "create_time": "2018-12-22 13:24",
-            "comments":[
-              {
-                "userid":"hello@qq.com"
-                "username":"sdfad我而去",
-                "text":"ddddddd3暗示法啊",
-                "create_at":123456756
-              },
-              {
-                "userid":"hello_lijj@qq.com"
-                "username":"sdfad",
-                "text":"ddddddd3",
-                "create_at":1234567
-              }
-            ],
+            "comments":23
             "stars":8
         }
     ]

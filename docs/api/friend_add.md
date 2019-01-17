@@ -4,7 +4,7 @@
 删除好友不需要对方同意，一旦一方添加好友，两人即成为好友关系
 
 
-POST:  /user/friend_add
+POST:  /User/friend_add
 
 request body:
 ```

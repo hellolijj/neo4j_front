@@ -4,7 +4,7 @@
 
 请求接口：
 
-POST:  /user/register
+POST:  /User/register
 
 request body:
 ```

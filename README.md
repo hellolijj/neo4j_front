@@ -5,7 +5,15 @@
 
 ## 系统访问
 
-项目后端：https://github.com/ccdongyu/neo4j-backend/
+- 项目后端：https://github.com/ccdongyu/neo4j-backend/
+- 系统测试账号 id： 
+    - hello_lijj 123
+    - admin 123
+    - lijj 123
+
+
+
+
 ## 项目部署
 
 ```

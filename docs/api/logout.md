@@ -1,6 +1,6 @@
 # 退出模块
 
-GET:  /user/logout
+GET:  /User/logout
 
 
 

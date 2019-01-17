@@ -60,10 +60,11 @@
         </div>
     </div>
     <script id="dynamic-contents" type="text/html">
+
         {{#  layui.each(d.list, function(index, item){ }}
         <div class="item">
             <div class="logo" style="float:left; margin-left: 22px;">
-                <img src="./res/static/images/info-img.png" alt="">
+                <img src="{{ item.avatar }}" alt="" style="width: 68px;">
             </div>
             <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
 
@@ -71,10 +72,13 @@
                 <h5>发布于：<span>{{ item.create_time }}</span></h5>
 
                 <p>{{ item.contents }}</p>
+
+                <div id="dynamic-contents-img"></div>
                 <img src="./res/static/images/item.png" alt="帅哥">
+
                 <div class="count layui-clear">
-                    <span class="pull-left">阅读 <em>10023</em></span>
-                    <span class="pull-right like"><i class="layui-icon layui-icon-praise"></i><em>999</em></span>
+                    <span class="pull-left"><a href="comment.html?dynamicid={{ item.dynamicid }}">评论 <em>{{ item.comments }}</em></a></span>
+                    <span id="thumup" class="pull-right like" onclick="thumup({{ item.dynamicid }})"><i class="layui-icon layui-icon-praise"></i>{{ item.stars }}</span>
                 </div>
             </div>
         </div>
@@ -88,6 +92,7 @@
     
     </script>
 
+
     <div class="footer">
         <p>
             <span>&copy; 2018 - 2019</span>
@@ -96,22 +101,17 @@
         <p><span>轻言轻语 记录你的小心情</span></p>
     </div>
 
-    <script src="./res/layui/layui.js"></script>
-    <script src='./res/static/js/jquery.js'></script>
-    <script src="./res/index.js"></script>
-
 </body>
 
 </html>
-<script>
-
-</script>
+<script src="./res/layui/layui.js"></script>
+<script src='./res/static/js/jquery.js'></script>
+<script src="./res/index.js"></script>
 
 <script>
     layui.config({
         base: './res/static/js/'
     }).use('blog');
-    
 
     layui.use('form', function () {
         var form = layui.form;
@@ -129,22 +129,21 @@
             }
 
             $.ajax({
-                type:"POST", 
-                url: base_usr + "/Dynamic/create", 
-                contentType:"application/json", 
-                data:JSON.stringify(sent_data),
-                success: function(res) {
-                    
-                    if(res.status == 200) {
+                type: "POST",
+                url: base_usr + "/Dynamic/create",
+                contentType: "application/json",
+                data: JSON.stringify(sent_data),
+                success: function (res) {
+                    if (res.status == 200) {
                         window.location.reload()
                     } else {
                         layer.alert(res.message, {
                             title: '错误提示'
                         })
                     }
-                } 
+                }
             })
-            
+
             return false;
         })
     });
@@ -153,8 +152,16 @@
     $.get(base_usr + "/Dynamic/getList", { userid: localStorage.getItem('userid') }, function (res) {
         if (res.status == 200) {
             localStorage.setItem('lastRequest', res.time)
-
             // layui 使用模版
+            res.data.dynamic_lists.forEach(e => {
+                if(e.avatar == null) {
+                    e.avatar = './res/static/images/info-img.png'
+                }
+                if(e.stars == null) {
+                    e.stars = 0
+                }
+            });
+
             layui.use('laytpl', function () {
                 laytpl = layui.laytpl;
                 data = {
@@ -174,5 +181,29 @@
         }
     })
 
+    function thumup(dynamicid) {
+        sent_data = {
+            "userid": localStorage.getItem('userid'),
+            "dynamicid": dynamicid
+        }
+        $.ajax({
+            type: "POST",
+            url: base_usr + "/Dynamic/thumb_up",
+            contentType: "application/json",
+            data: JSON.stringify(sent_data),
+            success: function (res) {
+                if (res.status == 200) {
 
+                    layer.msg('点赞成功', {
+                        icon: 6
+                        , time: 1000
+                    })
+                } else {
+                    layer.alert(res.message, {
+                        title: '错误提示'
+                    })
+                }
+            }
+        })
+    }
 </script>

@@ -57,24 +57,16 @@
                          alt="帅哥">
                     </div>
                 </div>	
-                <!-- <form class="layui-form" action="">
-                    <div class="layui-form-item layui-form-text">
-                        <textarea class="layui-textarea" name="contents" style="resize:none" placeholder="写点什么啊"></textarea>
-                    </div>
-                    <div class="item-btn">
-                        <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="dynamic-create">发布</button>
-                    </div>
-                </form>
-                <div id="dynamic-contents-view"></div> -->
+                
 
                 <form class="layui-form" action="">
                     <div class="layui-form-item layui-form-text">
-                          <textarea  class="layui-textarea" id="LAY-msg-content" style="resize:none"></textarea>
+                          <textarea  class="layui-textarea" id="LAY-msg-content" name="comment" style="resize:none"></textarea>
                     </div>
                 </form>
                 <div class="item-btn">
-                    <button class="layui-btn layui-btn-normal" id="item-btn">评论</button>
-                </div>
+                    <button class="layui-btn layui-btn-normal" id="item-btn" onclick="submit_comment()">评论</button>
+                </div>  
 
                 <div id="LAY-msg-box">
                     <div class="info-box">
@@ -135,6 +127,21 @@
     layui.config({
         base: './res/static/js/'
     }).use('blog');
+
+    function submit_comment() {
+        var comments = $("#LAY-msg-content").val()
+        var url = document.location.toString();
+    　　 var arrUrl = url.split("?");
+        arrUrl = arrUrl[1].split("=")
+        if(arrUrl[0] != "dynamicid" && arrUrl[1] == null) {
+            layer.alert("参数错误", {
+                title: '错误提示'
+            })
+            return false;
+        }
+        var dynamicid = arrUrl[1]
+        alert(dynamicid + '---' + commentss)
+    }
 
     
 

@@ -130,7 +130,7 @@
 
             $.ajax({
                 type: "POST",
-                url: base_usr + "/Dynamic/create",
+                url: base_url + "/Dynamic/create",
                 contentType: "application/json",
                 data: JSON.stringify(sent_data),
                 success: function (res) {
@@ -149,7 +149,7 @@
     });
     user = localStorage.getItem("user")
 
-    $.get(base_usr + "/Dynamic/getList", { userid: localStorage.getItem('userid') }, function (res) {
+    $.get(base_url + "/Dynamic/getList", { userid: localStorage.getItem('userid') }, function (res) {
         if (res.status == 200) {
             localStorage.setItem('lastRequest', res.time)
             // layui 使用模版
@@ -188,7 +188,7 @@
         }
         $.ajax({
             type: "POST",
-            url: base_usr + "/Dynamic/thumb_up",
+            url: base_url + "/Dynamic/thumb_up",
             contentType: "application/json",
             data: JSON.stringify(sent_data),
             success: function (res) {

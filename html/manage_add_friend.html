@@ -115,7 +115,7 @@
                     'userid': user.userid,
                     'friend_id': data.friend_id
                 }
-                $.post(base_usr + "/User/friend_add", send_data, function(res) {
+                $.post(base_url + "/User/friend_add", send_data, function(res) {
                     if(res.status == 200) {
                         localStorage.setItem('lastRequest', res.time)
                         // window.location.href = 'index.html'

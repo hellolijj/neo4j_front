@@ -121,7 +121,7 @@
     layui.use('form', function(){
         var form = layui.form;
         var user = localStorage.getItem("user")
-        var base_usr = "http://104.160.43.250:8888"
+        var base_url = "http://104.160.43.250:8888"
         form.on('submit(info_update)', function(data){
             console.log(user.userid)
             
@@ -129,7 +129,7 @@
                 userid: user.userid,
             }
 
-            $.post(base_usr + "/User/info_update", send_data, function(res) {
+            $.post(base_url + "/User/info_update", send_data, function(res) {
                 if(res.status == 200) {
                     console.log(res)
                     // localStorage.setItem('lastRequest', res.time)

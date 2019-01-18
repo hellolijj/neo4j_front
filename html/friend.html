@@ -92,10 +92,10 @@
 	layui.config({
 		base: './res/static/js/'
 	}).use('blog');
-	user = localStorage.getItem("user")
-	sent_data = {"userid": user.userid}
-	let base_url = "http://127.0.0.1:52000/index.php/Home"
+	sent_data = {"userid": localStorage.getItem("userid")}
 	
+	
+
 	$.get(base_url + "/User/friend_list", sent_data, function (res) {
 		if (res.status == 200) {
 			localStorage.setItem('lastRequest', res.time)
@@ -128,7 +128,7 @@
 					"friend_id": userid
 				}
 				
-				$.post(base_usr + "/User/friend_delete", data.field, function(res) {
+				$.post(base_url + "/User/friend_delete", data.field, function(res) {
 					if(res.status == 200) {
 						localStorage.setItem('lastRequest', res.time)
 						window.location.href = 'friend.html'

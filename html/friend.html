@@ -93,10 +93,9 @@
 		base: './res/static/js/'
 	}).use('blog');
 	sent_data = {"userid": localStorage.getItem("userid")}
-	
-	
 
 	$.get(base_url + "/User/friend_list", sent_data, function (res) {
+		console.log(res)	
 		if (res.status == 200) {
 			localStorage.setItem('lastRequest', res.time)
 			// layui 使用模版

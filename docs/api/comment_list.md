@@ -14,7 +14,7 @@ request body:
 
 
 response
-返回成功
+返回成功 (list 按时间顺序排序，时间越新越排在前面)
 ```
 {
   "status": 200,

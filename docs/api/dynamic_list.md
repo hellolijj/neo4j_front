@@ -35,7 +35,9 @@ response
               "http://www.pptok.com/wp-content/uploads/2012/08/xunguang-4.jpg",
               "http://5b0988e595225.cdn.sohucs.com/images/20181219/aec27193b3834a1694f535ba307995ad.jpeg"
             ],
-            "create_time": "2018-12-22 13:24"
+            "create_time": "2018-12-22 13:24",
+            "comments":2,
+            "stars":8
         },
         {
             "dynamicid":231,
@@ -48,7 +50,7 @@ response
               "http://5b0988e595225.cdn.sohucs.com/images/20181219/aec27193b3834a1694f535ba307995ad.jpeg"
             ],
             "create_time": "2018-12-22 13:24",
-            "comments":2
+            "comments":2,
             "stars":8
         },
         {
@@ -60,7 +62,7 @@ response
             "contents_img":[
             ],
             "create_time": "2018-12-22 13:24",
-            "comments":23
+            "comments":23,
             "stars":8
         },
         {

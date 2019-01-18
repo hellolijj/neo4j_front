@@ -16,7 +16,7 @@ request body
 
 
 response
-返回成功
+返回成功 一次不超过10条，如果没有，friend_lists 为空数组
 ```
 {
   "status": 200

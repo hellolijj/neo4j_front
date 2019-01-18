@@ -110,7 +110,6 @@
         layui.use('form', function(){
             var form = layui.form;
             form.on('submit(friend_add)', function(data){
-                console.log(data)
                 var send_data = {
                     friend_id: data.field.friend_id,
                     userid: localStorage.getItem('userid'),
@@ -122,6 +121,7 @@
                     contentType: "application/json",
                     data: JSON.stringify(send_data),
                     success: function (res) {
+                        console.log(res)
                         if (res.status == 200) {
                             layer.msg('添加成功', {
                                 icon: 6
@@ -132,7 +132,13 @@
                                 title: '错误提示'
                             })
                         }
+                    },
+                    error: function(res) {
+                        layer.alert(res.responseJSON.message, {
+                                title: '错误提示'
+                        })
                     }
+
                 })
                 
                 return false;

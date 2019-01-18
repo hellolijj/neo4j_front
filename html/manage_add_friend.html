@@ -109,22 +109,32 @@
         }).use('blog');
         layui.use('form', function(){
             var form = layui.form;
-            var user = localStorage.getItem("user")
             form.on('submit(friend_add)', function(data){
+                console.log(data)
                 var send_data = {
-                    'userid': user.userid,
-                    'friend_id': data.friend_id
+                    friend_id: data.field.friend_id,
+                    userid: localStorage.getItem('userid'),
+                    asdfa: 'adfasf',
                 }
-                $.post(base_url + "/User/friend_add", send_data, function(res) {
-                    if(res.status == 200) {
-                        localStorage.setItem('lastRequest', res.time)
-                        // window.location.href = 'index.html'
-                    } else if(res.status == 405) {
-                        layer.alert(res.message, {
-                            title: '错误提示'
-                        })
+                $.ajax({
+                    type: "POST",
+                    url: base_url + "/User/friend_add",
+                    contentType: "application/json",
+                    data: JSON.stringify(send_data),
+                    success: function (res) {
+                        if (res.status == 200) {
+                            layer.msg('添加成功', {
+                                icon: 6
+                                , time: 1000
+                            })
+                        } else {
+                            layer.alert(res.message, {
+                                title: '错误提示'
+                            })
+                        }
                     }
                 })
+                
                 return false;
             })
         });

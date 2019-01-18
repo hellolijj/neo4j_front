@@ -120,19 +120,21 @@
     }).use('blog');
     layui.use('form', function(){
         var form = layui.form;
-        var user = localStorage.getItem("user")
-        var base_url = "http://104.160.43.250:8888"
+        
+        
         form.on('submit(info_update)', function(data){
-            console.log(user.userid)
+            console.log(data)
             
             send_data = {
-                userid: user.userid,
+                userid: localStorage.getItem("userid"),
+                username: data.field.username,
+                sex: data.field.sex,
+                desc: data.field.desc
             }
 
             $.post(base_url + "/User/info_update", send_data, function(res) {
                 if(res.status == 200) {
-                    console.log(res)
-                    // localStorage.setItem('lastRequest', res.time)
+                    localStorage.setItem('lastRequest', res.time)
                     // window.location.href = 'index.html'
                 } else if(res.status == 405) {
                     layer.alert(res.message, {

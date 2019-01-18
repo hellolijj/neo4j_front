@@ -81,6 +81,13 @@ class UserController extends  CommonController {
         $this->successReturn("", []);
     }
 
+    /**
+     * info update
+     */
+    public function info_update() {
+        $this->successReturn("", []);
+    }
+
 
 
 

@@ -41,23 +41,25 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
     <div class="container-wrap">
         <div class="container container-message container-details container-comment">
             <div class="contar-wrap">
 
-                <div class="item">
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo">
-                        <h3>拥有诗意的心态,才能拥有诗意的生活</h3>
-                        <h5>发布于：<span>刚刚</span></h5>
-                        <p>父爱如山，不善表达。回想十多年前，总记得父亲有个宽厚的肩膀，小小的自己跨坐在上面，越过人山人海去看更广阔的天空，那个时候期望自己有一双翅膀，能够像鸟儿一样飞得高，看得远。虽然父亲有时会和自己开玩笑，但在做错事的时候会受到严厉的训斥。父亲有双粗糙的大手掌，手把手教我走路、骑车，却会在该放手的时刻果断地放开让自己去大胆尝试，那个时候期望快快长大，能够做自己想做的事，不用受父亲的“控制”。父亲是智慧树，他无所不知、无所不晓，虽然你有十万个为什么，但是也难不倒他。</p>
-                        <img src="../res/static/images/item.png" alt="帅哥">
+                <!-- 动态内容 -->
+                <div id="LAY-dynamic-box"></div>
+                <script id="LAY-dynamic-tpl" type="text/html">
+                    <div class="item">
+                        <div class="item-box  layer-photos-demo1 layer-photos-demo">
+                            <h3>{{ d.username }}</h3>
+                            <h5>发布于：<span>{{ d.create_time }}</span></h5>
+                            <p>{{ d.contents }}</p>
+                        </div>
                     </div>
-                </div>
+                </script>
 
-
+                <!-- 评论输入 -->
                 <form class="layui-form" action="">
                     <div class="layui-form-item layui-form-text">
                         <textarea class="layui-textarea" id="LAY-msg-content" name="comment" style="resize:none"></textarea>
@@ -67,8 +69,8 @@
                     <button class="layui-btn layui-btn-normal" id="item-btn" onclick="submit_comment()">评论</button>
                 </div>
 
+                <!-- 评论内容列表 -->
                 <div id="LAY-msg-box"></div>
-
                 <script id="LAY-msg-tpl" type="text/html">
                     <div class="info-box">
                         <div class="info-item">
@@ -87,10 +89,10 @@
                         </div>
                     </div>
                 </script>
+
             </div>
         </div>
     </div>
-
 
     <div class="footer">
         <p>
@@ -123,27 +125,45 @@
     }
     var dynamicid = arrUrl[1]
 
+    // 加载动态内容
+    $.get(base_usr + "/Dynamic/getList", { userid: localStorage.getItem('userid'), dynamic_id: dynamicid }, function (res) {
+        if (res.status == 200) {
+            layui.use('laytpl', function () {
+                laytpl = layui.laytpl;
+                var getTpl = document.getElementById('LAY-dynamic-tpl').innerHTML
+                var view = document.getElementById('LAY-dynamic-box');
+                res.data.dynamic_lists.forEach(e => {
+                    laytpl(getTpl).render(e, function (html) {
+                        $('#LAY-dynamic-box').prepend(html);
+                    });
+                });
+            });
+        } else {
+            layer.alert(res.message, {
+                title: '错误提示'
+            })
+        }
+    })
+
     // 加载评论
     $.get(base_usr + "/Comment/getList", { dynamic_id: dynamicid }, function (res) {
         if (res.status == 200) {
-            
             layui.use('laytpl', function () {
                 laytpl = layui.laytpl;
                 var getTpl = document.getElementById('LAY-msg-tpl').innerHTML
                 var view = document.getElementById('LAY-msg-box');
                 res.data.comment_lists.forEach(e => {
-                        var data = {
-                            username: e.username,
-                            avatar: e.avatar,
-                            time: e.create_time,
-                            content: e.text
-                        };
-                        laytpl(getTpl).render(data, function (html) {
+                    var data = {
+                        username: e.username,
+                        avatar: e.avatar,
+                        time: e.create_time,
+                        content: e.text
+                    };
+                    laytpl(getTpl).render(data, function (html) {
                         $('#LAY-msg-box').prepend(html);
                     });
-                });  
+                });
             });
-
         } else {
             layer.alert(res.message, {
                 title: '错误提示'
@@ -177,7 +197,5 @@
         })
         return false
     }
-
-
 
 </script>

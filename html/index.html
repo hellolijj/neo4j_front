@@ -73,9 +73,10 @@
 
                 <p>{{ item.contents }}</p>
 
-                <div id="dynamic-contents-img"></div>
-                <img src="./res/static/images/item.png" alt="帅哥">
-
+                {{#  if(item.contents_img.length != 0){ }}
+                <img src="{{ item.contents_img[1]}}" alt="img" style="height: 200px;">
+                {{#  } }} 
+                
                 <div class="count layui-clear">
                     <span class="pull-left"><a href="comment.html?dynamicid={{ item.dynamicid }}">评论 <em>{{ item.comments }}</em></a></span>
                     <span id="thumup" class="pull-right like" onclick="thumup({{ item.dynamicid }})"><i class="layui-icon layui-icon-praise"></i>{{ item.stars }}</span>

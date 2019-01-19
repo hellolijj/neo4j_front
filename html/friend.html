@@ -33,12 +33,12 @@
 					<li class="layui-nav-item"><a href="manage_info.html">管理</a></li>
 					<li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
 					<li class="layui-nav-item">
-                        <a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="manage_info.html">我的</a></dd>
-                            <dd><a href="javascript:logout();">退出</a></dd>
-                        </dl>
-                    </li>
+						<a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
+						<dl class="layui-nav-child">
+							<dd><a href="manage_info.html">我的</a></dd>
+							<dd><a href="javascript:logout();">退出</a></dd>
+						</dl>
+					</li>
 				</ul>
 			</div>
 
@@ -57,21 +57,21 @@
 	<script id="friend-lists" type="text/html">
         {{#  layui.each(d.list, function(index, item){ }}
         <div class="item">
-				<div class="logo" style="float:left; margin-left: 22px;">
-					<img src="{{ item.avatar }}" alt="" style="width:65px;">
-				</div>
-				<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-					<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete({{ item.userid }}, '{{ item.username }}')">删除</button>
-					<h3 style="line-height:70px;">{{ item.username }}</h3>
-				</div>
+			<div class="logo" style="float:left; margin-left: 22px;">
+				<img src="{{ item.avatar }}" alt="" style="width:65px;">
 			</div>
+			<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
+				<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete({{ item.userid }}, '{{ item.username }}')">删除</button>
+				<h3 style="line-height:70px;">{{ item.username }}</h3>
+			</div>
+		</div>
         {{#  }); }}
         {{#  if(d.list.length === 0){ }}
         无数据
         {{#  } }} 
     
 	</script>
-	
+
 	<div class="footer">
 		<p>
 			<span>&copy; 2018 - 2019</span>
@@ -79,12 +79,13 @@
 		</p>
 		<p><span>轻言轻语 记录你的小心情</span></p>
 	</div>
-	
+
 </body>
+
 </html>
 
 <script src="./res/layui/layui.js"></script>
-<script src='./res/static/js/jquery.js'></script> 
+<script src='./res/static/js/jquery.js'></script>
 <script src="./res/index.js"></script>
 
 
@@ -92,46 +93,46 @@
 	layui.config({
 		base: './res/static/js/'
 	}).use('blog');
-	sent_data = {"userid": localStorage.getItem("userid")}
+	sent_data = { "userid": localStorage.getItem("userid") }
 
 	$.get(base_url + "/User/friend_list", sent_data, function (res) {
-		console.log(res)	
+		console.log(res)
 		if (res.status == 200) {
 			localStorage.setItem('lastRequest', res.time)
 			// layui 使用模版
-            layui.use('laytpl', function () {
-                laytpl = layui.laytpl;
-                data = {
-                    "list": res.data
-                };
-                var getTpl = document.getElementById('friend-lists').innerHTML
-                var view = document.getElementById('friend-lists-view');
-                laytpl(getTpl).render(data, function (html) {
-                    view.innerHTML = html;
-                });
-            });
+			layui.use('laytpl', function () {
+				laytpl = layui.laytpl;
+				data = {
+					"list": res.data
+				};
+				var getTpl = document.getElementById('friend-lists').innerHTML
+				var view = document.getElementById('friend-lists-view');
+				laytpl(getTpl).render(data, function (html) {
+					view.innerHTML = html;
+				});
+			});
 		} else if (res.status == 405) {
 			layer.alert(res.message, {
-                title: '错误提示'
-            })
+				title: '错误提示'
+			})
 		}
 	})
 
 	function friend_delete(userid, username) {
 		layer.open({
 			content: '你确认要删除好友【' + username + '】吗？'
-			,btn: ['确定', '取消']
-			,yes: function(index, layero){
+			, btn: ['确定', '取消']
+			, yes: function (index, layero) {
 				sent_data = {
-					"userid": user.userid, 
+					"userid": user.userid,
 					"friend_id": userid
 				}
-				
-				$.post(base_url + "/User/friend_delete", data.field, function(res) {
-					if(res.status == 200) {
+
+				$.post(base_url + "/User/friend_delete", data.field, function (res) {
+					if (res.status == 200) {
 						localStorage.setItem('lastRequest', res.time)
 						window.location.href = 'friend.html'
-					} else if(res.status == 405) {
+					} else if (res.status == 405) {
 						layer.alert(res.message, {
 							title: '错误提示'
 						})

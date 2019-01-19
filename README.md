@@ -34,7 +34,7 @@ $ docker-compose up -d
 #### 个人信息
 
 - [登录](./docs/api/login.md)
-- [退出（此功能模块不需要开发）](./docs/api/logout.md)
+- [退出](./docs/api/logout.md)
 - [注册](./docs/api/register.md)
 - [修改信息（暂时可以不做）](./docs/api/info_change.md)
  
@@ -43,13 +43,14 @@ $ docker-compose up -d
 - [添加好友](./docs/api/friend_add.md)
 - [删除好友](./docs/api/friend_delete.md)
 - [好友列表](./docs/api/friend_list.md)
+- [推荐好友](./docs/api/friend_recomment.md)
 
 #### 动态管理
 
 - [发布动态](./docs/api/dynamic_create.md)
 - [动态列表](./docs/api/dynamic_list.md)
-- 查看自己动态（暂时可以不做）
-- 动态删除(暂时可以不做)
+- [评论动态](./docs/api/comment_create.md)
+- [评论列表](./docs/api/comment_list.md)
 
 
 ### 小组成员
@@ -63,7 +64,7 @@ $ docker-compose up -d
 
 - 后端：
 张雁宇：好友模块的后段逻辑
-唐冬雨：
+唐冬雨：动态管理接口
 孙超：好友推荐接口
 徐凌：信息修改接口
 

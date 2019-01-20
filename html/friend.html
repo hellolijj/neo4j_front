@@ -61,7 +61,7 @@
 					<img src="{{ item.avatar }}" alt="" style="width:65px;">
 				</div>
 				<div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-					<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete({{ item.userid }}, '{{ item.username }}')">删除</button>
+					<button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete('{{ item.userid }}','{{ item.username }}')">删除</button>
 					<h3 style="line-height:70px;">{{ item.username }}</h3>
 				</div>
 			</div>
@@ -92,11 +92,12 @@
 	layui.config({
 		base: './res/static/js/'
 	}).use('blog');
-	user = localStorage.getItem("user")
-	sent_data = {"userid": user.userid}
-	let base_url = "http://127.0.0.1:52000/index.php/Home"
-	
-	$.get(base_url + "/User/friend_list", sent_data, function (res) {
+	userid = localStorage.getItem("userid")
+	sent_data = {"userid": userid}
+
+	//let base_url = "http://127.0.0.1:52000/index.php/Home"
+	//let base_usr = "http://104.160.43.250:8888/"
+	$.get(base_usr + "/User/friend_list", sent_data, function (res) {
 		if (res.status == 200) {
 			localStorage.setItem('lastRequest', res.time)
 			// layui 使用模版
@@ -118,24 +119,41 @@
 		}
 	})
 
-	function friend_delete(userid, username) {
+	function friend_delete(userid,username) {
 		layer.open({
 			content: '你确认要删除好友【' + username + '】吗？'
 			,btn: ['确定', '取消']
 			,yes: function(index, layero){
+				user_id = localStorage.getItem("userid")
 				sent_data = {
-					"userid": user.userid, 
+					"userid": user_id,
 					"friend_id": userid
 				}
 				
-				$.post(base_usr + "/User/friend_delete", data.field, function(res) {
-					if(res.status == 200) {
-						localStorage.setItem('lastRequest', res.time)
-						window.location.href = 'friend.html'
-					} else if(res.status == 405) {
-						layer.alert(res.message, {
-							title: '错误提示'
-						})
+				// $.post(base_usr + "/User/friend_delete", data.field, function(res) {
+				// 	if(res.status == 200) {
+				// 		localStorage.setItem('lastRequest', res.time)
+				// 		window.location.href = 'friend.html'
+				// 	} else if(res.status == 405) {
+				// 		layer.alert(res.message, {
+				// 			title: '错误提示'
+				// 		})
+				// 	}
+				// })
+				$.ajax({
+					type: "POST",
+					url: base_usr + "/User/friend_delete",
+					contentType: "application/json",
+					data: JSON.stringify(sent_data),
+					success: function (res) {
+						if (res.status == 200) {
+							localStorage.setItem('lastRequest', res.time)
+							window.location.href = 'friend.html'
+						} else if (res.status == 405) {
+							layer.alert(res.message, {
+								title: '错误提示'
+							})
+						}
 					}
 				})
 			}

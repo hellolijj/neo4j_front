@@ -109,20 +109,36 @@
         }).use('blog');
         layui.use('form', function(){
             var form = layui.form;
-            var user = localStorage.getItem("user")
             form.on('submit(friend_add)', function(data){
-                var send_data = {
-                    'userid': user.userid,
-                    'friend_id': data.friend_id
+                userid = localStorage.getItem("userid")
+                sent_data = {
+                    'userid': userid,
+                    'friend_id': data.field.friend_id
                 }
-                $.post(base_usr + "/User/friend_add", send_data, function(res) {
-                    if(res.status == 200) {
-                        localStorage.setItem('lastRequest', res.time)
-                        // window.location.href = 'index.html'
-                    } else if(res.status == 405) {
-                        layer.alert(res.message, {
-                            title: '错误提示'
-                        })
+                // $.post(base_usr + "/User/friend_add", sent_data, function(res) {
+                //     if(res.status == 200) {
+                //         localStorage.setItem('lastRequest', res.time)
+                //         // window.location.href = 'index.html'
+                //     } else if(res.status == 405) {
+                //         layer.alert(res.message, {
+                //             title: '错误提示'
+                //         })
+                //     }
+                // })
+                $.ajax({
+                    type: "POST",
+                    url: base_usr + "/User/friend_add",
+                    contentType: "application/json",
+                    data: JSON.stringify(sent_data),
+                    success: function (res) {
+                        if (res.status == 200) {
+                            localStorage.setItem('lastRequest', res.time)
+                            window.location.href = 'index.html'
+                        } else if (res.status == 405) {
+                            layer.alert(res.message, {
+                                title: '错误提示'
+                            })
+                        }
                     }
                 })
                 return false;

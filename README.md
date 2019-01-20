@@ -36,7 +36,6 @@ $ docker-compose up -d
 - [登录](./docs/api/login.md)
 - [退出](./docs/api/logout.md)
 - [注册](./docs/api/register.md)
-- [修改信息（暂时可以不做）](./docs/api/info_change.md)
  
 #### 好友管理
 

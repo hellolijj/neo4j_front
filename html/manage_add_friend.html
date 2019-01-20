@@ -39,14 +39,12 @@
                 <ul class="layui-nav pull-left ">
                     <li class="layui-nav-item"><a href="index.html">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
-                    <li class="layui-nav-item layui-this"><a href="manage_info.html">管理</a></li>
+                    <li class="layui-nav-item layui-this"><a href="manage_add_friend.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
                     <li class="layui-nav-item">
                         <a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">修改信息</a></dd>
-                            <dd><a href="javascript:;">添加好友</a></dd>
-                            <dd><a href="javascript:;">退出登陆</a></dd>
+                            <dd><a href="javascript:logout();">退出</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -67,7 +65,6 @@
     <div class="container-wrap">
         <div style="float:left; margin-left: 130px;">
             <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
-                <li class="layui-nav-item"><a href="manage_info.html">修改信息</a></li>
                 <li class="layui-nav-item"><a href="">添加好友</a></li>
                 <li class="layui-nav-item"><a href="manage_recomment_friend.html">好友推荐</a></li>
             </ul>
@@ -138,9 +135,7 @@
                                 title: '错误提示'
                         })
                     }
-
                 })
-                
                 return false;
             })
         });

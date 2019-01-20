@@ -30,12 +30,11 @@
 				<ul class="layui-nav pull-left">
 					<li class="layui-nav-item"><a href="index.html">动态</a></li>
 					<li class="layui-nav-item layui-this"><a href="friend.html">好友</a></li>
-					<li class="layui-nav-item"><a href="manage_info.html">管理</a></li>
+					<li class="layui-nav-item"><a href="manage_add_friend.html">管理</a></li>
 					<li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
 					<li class="layui-nav-item">
 						<a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
 						<dl class="layui-nav-child">
-							<dd><a href="manage_info.html">我的</a></dd>
 							<dd><a href="javascript:logout();">退出</a></dd>
 						</dl>
 					</li>
@@ -132,7 +131,7 @@
 					type: "POST",
 					url: base_url + "/User/friend_delete",
 					contentType: "application/json",
-					data: JSON.stringify(data.field),
+					data: JSON.stringify(sent_data),
 					success: function (res) {
 						if (res.status == 200) {
 							localStorage.setItem('lastRequest', res.time)
@@ -151,6 +150,5 @@
 				})
 			}
 		});
-
 	}
 </script>

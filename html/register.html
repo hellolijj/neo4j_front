@@ -38,7 +38,7 @@
                 <ul class="layui-nav pull-left ">
                     <li class="layui-nav-item"><a href="index.html">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
-                    <li class="layui-nav-item"><a href="manage_info.html">管理</a></li>
+                    <li class="layui-nav-item"><a href="manage_add_friend.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
                 </ul>
                 <a href="#" class="personal pull-left">
@@ -166,11 +166,7 @@
 
 layui.use('form', function(){
     var form = layui.form;
-    
-
     base_url = "http://112.74.36.158:8888"
-    
-   
     form.on('submit(register)', function(data){
         $.ajax({
             type:"POST", 

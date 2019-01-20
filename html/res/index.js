@@ -8,6 +8,9 @@
 // 线上环境接口
 base_url = "http://112.74.36.158:8888"
 
+// 后端开发环境
+// base_url = "http://192.168.1.166:8888"
+
 
 // 检测是否登录, 时间判断
 var lastRequest = localStorage.getItem('lastRequest')

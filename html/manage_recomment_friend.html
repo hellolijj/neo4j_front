@@ -22,10 +22,10 @@
     <div class="header">
         <div class="header-wrap">
             <h1 class="logo pull-left">
-                    <a href="activity.html" style="color:rgba(255,255,255,.8);">
-                            <img src="./res/static/images/logo.png" alt="" class="logo-img">
-                            轻言轻语
-                        </a>
+                <a href="activity.html" style="color:rgba(255,255,255,.8);">
+                    <img src="./res/static/images/logo.png" alt="" class="logo-img">
+                    轻言轻语
+                </a>
             </h1>
             <form class="layui-form blog-seach pull-left" action="">
                 <div class="layui-form-item-item blog-sewrap">
@@ -39,14 +39,12 @@
                 <ul class="layui-nav pull-left ">
                     <li class="layui-nav-item"><a href="index.html">动态</a></li>
                     <li class="layui-nav-item"><a href="friend.html">好友</a></li>
-                    <li class="layui-nav-item layui-this"><a href="manage_info.html">管理</a></li>
+                    <li class="layui-nav-item layui-this"><a href="manage_add_friend.html">管理</a></li>
                     <li class="layui-nav-item"><a href="https://github.com/hellolijj/neo4j_front" target="_black">关于</a></li>
                     <li class="layui-nav-item">
                         <a href=""><img src="./res/static/images/info-img.png" class="layui-nav-img">我</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">修改信息</a></dd>
-                            <dd><a href="javascript:;">添加好友</a></dd>
-                            <dd><a href="javascript:;">退出登陆</a></dd>
+                            <dd><a href="javascript:logout();">退出</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -67,34 +65,33 @@
     <div class="container-wrap">
         <div style="float:left; margin-left: 130px;">
             <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
-                <li class="layui-nav-item"><a href="manage_info.html">修改信息</a></li>
                 <li class="layui-nav-item"><a href="manage_add_friend.html">添加好友</a></li>
                 <li class="layui-nav-item"><a href="manage_recomment_friend.html">好友推荐</a></li>
             </ul>
         </div>
         <div class="container">
             <div class="contar-wrap">
-                <div class="item">
-                    <div class="logo" style="float:left; margin-left: 22px;">
-                        <img src="{{ item.avatar }}" alt="" style="width:65px;">
-                    </div>
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-                        <button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete({{ item.userid }}, '{{ item.username }}')">删除</button>
-                        <h3 style="line-height:70px;">asdfasdf</h3>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="logo" style="float:left; margin-left: 22px;">
-                        <img src="{{ item.avatar }}" alt="" style="width:65px;">
-                    </div>
-                    <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
-                        <button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_delete({{ item.userid }}, '{{ item.username }}')">删除</button>
-                        <h3 style="line-height:70px;">safdasdf</h3>
-                    </div>
-                </div>
+                <div id="recommend-friends-view"></div>
             </div>
         </div>
     </div>
+    <script id="recommend-friends" type="text/html">
+        {{#  layui.each(d.list, function(index, item){ }}
+        <div class="item">
+            <div class="logo" style="float:left; margin-left: 22px;">
+                <img src="{{ item.avatar }}" alt="" style="width:65px;">
+            </div>
+            <div class="item-box  layer-photos-demo1 layer-photos-demo" style="padding-left:110px;">
+                <button class="layui-btn layui-btn-normal" style="float:right; margin-top:20px;" onclick="friend_add('{{ item.friend_id}}', '{{ item.username }}')">添加</button>
+                <h3 style="line-height:70px;">{{ item.username }}</h3>
+            </div>
+        </div>
+        {{#  }); }}
+        {{#  if(d.list.length === 0){ }}
+        无数据
+        {{#  } }} 
+    
+    </script>
     <div class="footer">
         <p>
             <span>&copy; 2018</span>
@@ -110,8 +107,71 @@
         layui.config({
             base: './res/static/js/'
         }).use('blog');
+
+        
+
+        // 好友推荐
+        $.get(base_url + "/User/friend_recommend", { userid: localStorage.getItem('userid') }, function (res) {
+            if (res.status == 200) {
+                localStorage.setItem('lastRequest', res.time)
+                layui.use('laytpl', function () {
+                    laytpl = layui.laytpl;
+                    data = {
+                        "list": res.data.friend_lists
+                    };
+                    var getTpl = document.getElementById('recommend-friends').innerHTML
+                    var view = document.getElementById('recommend-friends-view');
+                    laytpl(getTpl).render(data, function (html) {
+                        view.innerHTML = html;
+                    });
+                });
+
+            } else {
+                layer.alert(res.message, {
+                    title: '错误提示'
+                })
+            }
+        })
+
+        function friend_add(userid, username) {
+            layer.open({
+                content: '你确认要添加好友【' + username + '】吗？'
+                , btn: ['确定', '取消']
+                , yes: function (index, layero) {
+                    send_data = {
+                        "userid": localStorage.getItem("userid"),
+                        "friend_id": userid
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: base_url + "/User/friend_add",
+                        contentType: "application/json",
+                        data: JSON.stringify(send_data),
+                        success: function (res) {
+                            console.log(res)
+                            if (res.status == 200) {
+                                layer.msg('添加成功', {
+                                    icon: 6
+                                    , time: 1000
+                                })
+                            } else {
+                                layer.alert(res.message, {
+                                    title: '错误提示'
+                                })
+                            }
+                        },
+                        error: function (res) {
+                            layer.alert(res.responseJSON.message, {
+                                title: '错误提示'
+                            })
+                        }
+                    })
+                }
+            });
+        }
     </script>
-    
+
 </body>
 
 </html>

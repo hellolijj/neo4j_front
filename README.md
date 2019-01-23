@@ -7,13 +7,13 @@
 
 - 项目后端：https://github.com/ccdongyu/neo4j-backend/
 - 系统测试账号 id： 
-    - hello_lijj 123
-    - admin 123
-    - lijj 123
-    
+    - lijj lijj
+    - admin admin
     - 123 123
-    - 456 123
-
+    - 456 456
+    - 5467821251 123456
+    - 5331621349 123456
+    - 1280761142 123456
 
 
 

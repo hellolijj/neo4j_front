@@ -131,10 +131,8 @@
                 laytpl = layui.laytpl;
                 var getTpl = document.getElementById('LAY-dynamic-tpl').innerHTML
                 var view = document.getElementById('LAY-dynamic-box');
-                res.data.dynamic_lists.forEach(e => {
-                    laytpl(getTpl).render(e, function (html) {
-                        $('#LAY-dynamic-box').prepend(html);
-                    });
+                laytpl(getTpl).render(res.data.dynamic_lists[0], function (html) {
+                    $('#LAY-dynamic-box').prepend(html);
                 });
             });
         } else {

@@ -1,15 +1,15 @@
-api:
+neo4j_api:
   image: chvb/docker-apache-php
-  container_name: api
+  container_name: neo4j_front
   restart: always
   volumes:
     - ./mock/:/var/www:rw
   ports:
     - "52000:80"
 
-front:
+neo4j_front:
   build: ./html
-  container_name: front
+  container_name: neo4j_front
   restart: always
   volumes:
     - ./html:/usr/src/node:rw
